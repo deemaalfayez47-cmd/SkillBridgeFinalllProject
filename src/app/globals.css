@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-secondary: #10b981;
+  --color-accent: #06b6d4;
+  --color-sb-neon: #00f2fe;
+  --color-sb-purple: #8a2be2;
+
+  @keyframes gradient-x {
+    0%,
+    100% {
+      background-size: 200% 200%;
+      background-position: left center;
+    }
+    50% {
+      background-size: 200% 200%;
+      background-position: right center;
+    }
+  }
+  @keyframes scan {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+  @keyframes floating {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+}
+
+@layer base {
+  :root {
+    --background: #f8fafc;
+    --foreground: #1e293b;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: #f8fafc !important;
+    color: #1e293b !important;
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* تأثير الزجاج - SkillBridge Glass */
+  .sb-glass {
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  /* أزرار التدرج اللوني */
+  .sb-btn-gradient {
+    background: linear-gradient(135deg, #00f2fe 0%, #8a2be2 100%) !important;
+    color: white !important;
+    border-radius: 14px !important;
+    padding: 10px 24px !important;
+    font-weight: 700 !important;
+    transition: all 0.3s ease !important;
+    border: none !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* نصوص التدرج اللوني */
+  .sb-gradient-text {
+    background: linear-gradient(135deg, #06b6d4 0%, #7c3aed 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-weight: 800;
+  }
+
+  /* شريط التقدم */
+  .sb-progress-bar {
+    height: 100% !important;
+    background: linear-gradient(90deg, #00f2fe, #8a2be2) !important;
+    border-radius: 999px !important;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: floating 4s ease-in-out infinite;
+  }
+}
+
+.sb-progress-bar {
+  @apply bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(6,182,212,0.5)];
+}
