@@ -4,13 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
-  Briefcase,
   Settings,
   LogOut,
   Search,
   Lightbulb,
-  User,
+  Sparkles,
+  ChevronRight,
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function StudentLayout({
   children,
@@ -22,92 +23,121 @@ export default function StudentLayout({
   const navItems = [
     { name: "Dashboard", href: "/dashboard/student", icon: LayoutDashboard },
     { name: "Job Board", href: "/dashboard/student/job-board", icon: Search },
+    { name: "CV Builder", href: "/dashboard/student/cv", icon: Lightbulb },
     {
-      name: "Applications",
-      href: "/dashboard/student/applications",
-      icon: Briefcase,
+      name: "Profile Settings",
+      href: "/dashboard/student/settings",
+      icon: Settings,
     },
-    {
-      name: "Skill Gap",
-      href: "/dashboard/student/skill-gap",
-      icon: Lightbulb,
-    },
-    { name: "Profile", href: "/dashboard/student/settings", icon: Settings },
   ];
 
   return (
-    <div className="flex min-h-screen bg-[#f8fafc]">
-      {/* Sidebar المتدرج (أصفر وأزرق) */}
-      <aside className="w-72 bg-white border-r border-slate-100 flex flex-col sticky top-0 h-screen z-20 shadow-sm">
+    <div className="flex min-h-screen bg-[#F8FAFC]">
+      {/* 🚀 Sidebar: Modern, Sleek & Animated */}
+      <aside className="w-72 bg-white border-r border-slate-100 flex flex-col sticky top-0 h-screen z-20 shadow-[10px_0_30px_rgba(0,0,0,0.02)]">
+        {/* Logo Section */}
         <div className="p-8">
           <Link
             href="/dashboard/student"
-            className="flex items-center gap-2 group"
+            className="flex items-center gap-3 group"
           >
-            {/* أيقونة اللوجو بتدرج أصفر وأزرق */}
-            <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg group-hover:rotate-6 transition-transform">
-              <span className="font-black text-xl">S</span>
+            <motion.div
+              whileHover={{ rotate: 10, scale: 1.1 }}
+              className="w-11 h-11 bg-slate-900 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-slate-200"
+            >
+              <Sparkles size={22} className="text-amber-400" />
+            </motion.div>
+            <div className="flex flex-col">
+              <h1 className="text-xl font-black text-slate-900 tracking-tighter leading-none italic">
+                SKILL<span className="text-blue-600">BRIDGE</span>
+              </h1>
             </div>
-            <h1 className="text-2xl font-black bg-gradient-to-r from-amber-500 to-blue-600 bg-clip-text text-transparent italic">
-              SkillBridge
-            </h1>
           </Link>
         </div>
 
-        <nav className="flex-1 px-4 space-y-2.5">
+        {/* Navigation Links */}
+        <nav className="flex-1 px-4 space-y-2 mt-4">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`flex items-center gap-3 px-5 py-3.5 rounded-2xl transition-all duration-300 group ${
-                  isActive
-                    ? "bg-gradient-to-r from-amber-400 to-blue-500 text-white shadow-xl shadow-blue-100/50"
-                    : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
-                }`}
+                className="relative block group"
               >
-                <item.icon
-                  size={20}
-                  className={
+                <motion.div
+                  className={`flex items-center gap-3 px-5 py-3.5 rounded-2xl transition-all duration-300 ${
                     isActive
-                      ? "text-white"
-                      : "text-slate-400 group-hover:text-blue-500"
-                  }
-                />
-                <span className="font-bold text-sm tracking-tight">
-                  {item.name}
-                </span>
+                      ? "bg-slate-900 text-white shadow-lg shadow-slate-200"
+                      : "text-slate-500 hover:bg-blue-50/50 hover:text-blue-600"
+                  }`}
+                >
+                  <item.icon
+                    size={18}
+                    className={
+                      isActive
+                        ? "text-amber-400"
+                        : "text-slate-400 group-hover:text-blue-500"
+                    }
+                  />
+                  <span className="font-bold text-xs uppercase tracking-widest flex-1">
+                    {item.name}
+                  </span>
+
+                  {isActive && (
+                    <motion.div layoutId="activePill">
+                      <ChevronRight size={14} className="text-amber-400" />
+                    </motion.div>
+                  )}
+                </motion.div>
+
+                {/* لمسة أنيميشن خلفية عند التمرير */}
+                {!isActive && (
+                  <div className="absolute inset-0 bg-blue-50/0 group-hover:bg-blue-50/50 rounded-2xl -z-10 transition-all duration-300" />
+                )}
               </Link>
             );
           })}
         </nav>
 
-        {/* Footer: User Profile & Logout */}
-        <div className="p-4 border-t border-slate-50 space-y-3">
-          <div className="flex items-center gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-100">
-            <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-black">
-              D
+        {/* User Card & Logout */}
+        <div className="p-4 mt-auto border-t border-slate-50 space-y-3 bg-slate-50/50">
+          <motion.div
+            whileHover={{ y: -2 }}
+            className="flex items-center gap-3 p-3 rounded-2xl bg-white border border-slate-100 shadow-sm"
+          >
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-blue-400 flex items-center justify-center text-white shadow-md">
+              <span className="font-black text-sm">D</span>
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-black text-slate-800 truncate uppercase tracking-tighter">
+              <p className="text-[10px] font-black text-slate-800 truncate uppercase tracking-tight">
                 Deema Alsoufi
               </p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase">
-                Student Hub
+              <p className="text-[8px] font-bold text-blue-500 uppercase tracking-widest">
+                Pro Member
               </p>
             </div>
-          </div>
+          </motion.div>
+
           <Link
             href="/login"
-            className="flex items-center gap-3 px-5 py-3 rounded-2xl text-slate-400 hover:bg-rose-50 hover:text-rose-600 transition-all font-bold text-xs"
+            className="flex items-center gap-3 px-5 py-3.5 rounded-2xl text-slate-400 hover:bg-rose-50 hover:text-rose-600 transition-all font-black text-[10px] uppercase tracking-[0.2em]"
           >
-            <LogOut size={18} /> Log Out
+            <LogOut size={16} /> Log Out
           </Link>
         </div>
       </aside>
 
-      <main className="flex-1 overflow-y-auto">{children}</main>
+      {/* Main Content Area */}
+      <main className="flex-1 overflow-y-auto">
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          {children}
+        </motion.div>
+      </main>
     </div>
   );
 }
