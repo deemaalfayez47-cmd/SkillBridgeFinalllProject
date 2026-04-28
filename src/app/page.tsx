@@ -27,9 +27,9 @@ export default function WelcomePage() {
 
   const keyFeatures = [
     {
-      title: "AI Resume Builder",
-      desc: "Create a professional AI-powered resume tailored for the Jordanian market.",
-      icon: "📄",
+      title: "Talent Spotlight",
+      desc: "Showcase your best work  directly to recruiters.",
+      icon: "✨",
       color: "from-blue-500 to-cyan-400",
     },
     {
@@ -45,9 +45,9 @@ export default function WelcomePage() {
       color: "from-amber-400 to-orange-500",
     },
     {
-      title: "Secure Payments",
-      desc: "Guarantee your financial rights through smart contracts and a secure, reliable payment system.",
-      icon: "🔒",
+      title: "Trust Network",
+      desc: "Get your skills endorsed by companies and build a trusted professional reputation on the platform.",
+      icon: "🛡️",
       color: "from-green-400 to-emerald-600",
     },
   ];
@@ -392,12 +392,6 @@ export default function WelcomePage() {
           </div>
         </section>
       </div>
-
-      <footer className="relative z-10 py-16 border-t border-white/5 text-center bg-black/80 backdrop-blur-md">
-        <p className="bg-gradient-to-r from-slate-400 via-white to-slate-400 bg-clip-text text-transparent text-[10px] tracking-[0.5em] uppercase font-black">
-          SkillBridge AI Platform • 2026
-        </p>
-      </footer>
     </div>
   );
 }

@@ -59,11 +59,7 @@ export default function DashboardPage() {
             <div className="h-1 w-12 bg-blue-600 rounded-full opacity-80" />
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-blue-50 rounded-xl shadow-inner">
-              <Sparkles size={18} className="text-blue-600 animate-pulse" />
-            </div>
-          </div>
+          
         </div>
       </motion.div>
 
